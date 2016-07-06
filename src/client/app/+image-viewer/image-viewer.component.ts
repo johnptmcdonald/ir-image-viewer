@@ -2,6 +2,7 @@ import {Component, Input, AfterViewInit} from "@angular/core";
 import { IImage } from './image'
 
 declare var Swiper: any;
+// import './swiper' => Error: TypeError: AMD module
 
 @Component({
   moduleId: module.id,
@@ -12,29 +13,47 @@ declare var Swiper: any;
 })
 
 export class ImageViewerComponent implements AfterViewInit {
-    Swiper: any;
-    @Input() images: IImage[];
+  galleryTop: any;
+  galleryThumbs: any;
 
-    constructor() {}
+  @Input() images: IImage[];
 
-    ngAfterViewInit(){
-      var galleryTop = new Swiper('.gallery-top', {
-          nextButton: '.swiper-button-next',
-          prevButton: '.swiper-button-prev',
-          spaceBetween: 10,
-      });
+  constructor() {}
 
-      var galleryThumbs = new Swiper('.gallery-thumbs', {
-          spaceBetween: 10,
-          centeredSlides: true,
-          slidesPerView: 'auto',
-          touchRatio: 0.2,
-          slideToClickedSlide: true
-      });
+  ngAfterViewInit(){
+    // for infinite looping, the slides per view on the thumbnails
+    // must be the same as the 'looped slides number' on the main gallery
+    // Thus, slidesPerView is defined here:
+    let slidesPerView = '5';
 
-      galleryTop.params.control = galleryThumbs;
-      galleryThumbs.params.control = galleryTop;
+    this.galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 10,
+        centeredSlides: true,
+        slidesPerView: slidesPerView,
+        touchRatio: 3,
+        slideToClickedSlide: true,
+        loop: true,
+    });
 
-    }
+    this.galleryTop = new Swiper('.gallery-top', {
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 10,
+        loop: true,
+        loopedSlides: +slidesPerView
+    });
+
+
+    this.galleryTop.params.control = this.galleryThumbs;
+    this.galleryThumbs.params.control = this.galleryTop;
+
+  }
+
+  showIndices(){
+    console.log(this.galleryTop.slides)
+    console.log(this.galleryThumbs.slides)
+    console.log("main gallery index: " + this.galleryTop.activeIndex)
+    console.log("thumbnail gallery index: " + this.galleryThumbs.activeIndex)
+  }
 
 }

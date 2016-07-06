@@ -54,8 +54,8 @@ export class AppComponent implements OnInit {
   		},
   		{
   			title: 'image5',
-  			url: 'http://blog.caranddriver.com/wp-content/uploads/2016/06/2016-Chevrolet-Malibu-hybrid-101-876x535.jpg',
-  			caption: 'A red chevrolet malibu'
+  			url: 'http://image.usedcars.com/Imageserver/Chrome/original/13779.jpg',
+  			caption: 'A red car'
 
   		},
   		{
