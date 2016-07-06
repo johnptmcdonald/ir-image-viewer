@@ -7,12 +7,16 @@
   <title><%= APP_TITLE %></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="./css/main.css">
   <!-- inject:css -->
   <!-- endinject -->
 </head>
 <body>
 
   <sd-app>Loading...</sd-app>
+  <script src="app/scripts/jquery-2.2.1.min.js"></script>
+  <script src="app/scripts/swiper.js"></script>
+  <script src="app/scripts/swiper.jquery.js"></script>
 
   <script>
   // Fixes undefined module function in SystemJS bundle
@@ -27,6 +31,8 @@
     System.config(<%=
       JSON.stringify(SYSTEM_CONFIG, null, 2)
     %>)
+
+    // System.config({ meta: { 'path/to/module.js': { format: 'global' } } })
   </script>
   <% } %>
 

@@ -6,6 +6,8 @@ import { Config, NameListService, NavbarComponent, ToolbarComponent } from './sh
 // ir-image-viewer imports:
 import { ImageViewerComponent } from './+image-viewer/image-viewer.component'
 import { IImage } from './+image-viewer/image'
+
+
 /**
  * This class represents the main application component. Within the @Routes annotation is the configuration of the
  * applications routes, configuring the paths for the lazy loaded components (HomeComponent, AboutComponent).
@@ -15,7 +17,8 @@ import { IImage } from './+image-viewer/image'
   selector: 'sd-app',
   viewProviders: [NameListService, HTTP_PROVIDERS],
   templateUrl: 'app.component.html',
-  directives: [ROUTER_DIRECTIVES, NavbarComponent, ToolbarComponent, ImageViewerComponent]
+  directives: [ROUTER_DIRECTIVES, NavbarComponent, ToolbarComponent, ImageViewerComponent],
+  styleUrls: ['app.component.css']
 })
 export class AppComponent implements OnInit {
   images: IImage[];

@@ -1,7 +1,21 @@
-<div>
-	
-	This is the image viewer
-	<div *ngFor='let image of images'>
-		{{image | json}}
-	</div>
+<div class='wrapper'>
+	<div class="swiper-container gallery-top">
+        <div class="swiper-wrapper">
+            <div 
+            	class="swiper-slide" 
+            	*ngFor="let image of images"
+            	[style.background-image]="'url(' + image.url + ')'">	
+            </div>
+        </div>
+        <div class="swiper-button-next swiper-button-white"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+    <div class="swiper-container gallery-thumbs">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"
+            	*ngFor="let image of images"
+            	[style.background-image]="'url(' + image.url + ')'">
+            </div>
+        </div>
+    </div>
 </div>
